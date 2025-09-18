@@ -10,6 +10,14 @@ find_package(grid_map_ros REQUIRED)
 find_package(PCL REQUIRED) ## See ROS REP2000 for expected PCL version
 find_package(rclcpp REQUIRED)
 find_package(rcutils REQUIRED)
+find_package(yaml_cpp_vendor REQUIRED)
+find_package(yaml-cpp)
+
+if(TARGET yaml-cpp::yaml-cpp)
+  set(YAML_CPP_TARGET yaml-cpp::yaml-cpp)
+else()
+  set(YAML_CPP_TARGET ${YAML_CPP_LIBRARIES})
+endif()
 
 find_package(OpenMP QUIET)
 if(OpenMP_FOUND)
@@ -60,11 +68,12 @@ add_library(${PROJECT_NAME} SHARED
 target_link_libraries(${PROJECT_NAME}
   ${OpenMP_CXX_LIBRARIES}
   ${PCL_LIBRARIES}
-  yaml-cpp
+  ${YAML_CPP_TARGET}
 )
 
 ament_target_dependencies(${PROJECT_NAME} SYSTEM
   ${dependencies}
+  yaml-cpp
 )
 
 add_executable(grid_map_pcl_loader_node

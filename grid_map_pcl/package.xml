@@ -21,7 +21,7 @@
   <depend>grid_map_ros</depend>
   <depend>rclcpp</depend>
   <depend>rcutils</depend>
-  <depend>yaml-cpp</depend>
+  <depend>yaml_cpp_vendor</depend>
   <build_depend>libpcl-all-dev</build_depend>
   <build_export_depend>libpcl-all-dev</build_export_depend>
   <exec_depend>libpcl-all</exec_depend>
